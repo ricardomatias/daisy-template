@@ -1,6 +1,33 @@
 {
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "C_Cpp.clang_format_style": "file",
     "files.associations": {
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "cstring": "cpp",
+        "cstdio": "cpp",
+        "string_view": "cpp",
+        "array": "cpp"
+    },
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "googletest.failed",
+                "settings": {
+                    "foreground": "#f00"
+                }
+            },
+            {
+                "scope": "googletest.passed",
+                "settings": {
+                    "foreground": "#0f0"
+                }
+            },
+            {
+                "scope": "googletest.run",
+                "settings": {
+                    "foreground": "#0f0"
+                }
+            }
+        ]
     }
 }

@@ -30,10 +30,15 @@ endif()
 
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 set(MCU "-mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb")
+
 set(OBJECT_GEN_FLAGS "${MCU} -fno-builtin -fno-exceptions -Wall -ffunction-sections -fdata-sections -fomit-frame-pointer -finline-functions -Wno-attributes -Wno-strict-aliasing -Wno-maybe-uninitialized -Wno-missing-attributes -Wno-stringop-overflow")
-set(CMAKE_C_FLAGS "${OBJECT_GEN_FLAGS} -std=gnu99 " CACHE INTERNAL "C Compiler options")
-set(CMAKE_CXX_FLAGS "${OBJECT_GEN_FLAGS} -Wno-register" CACHE INTERNAL "C++ Compiler options")
-set(CMAKE_ASM_FLAGS "${OBJECT_GEN_FLAGS} -x assembler-with-cpp " CACHE INTERNAL "ASM Compiler options")
+
+set(DAISY_C_FLAGS "${MCU} ${OBJECT_GEN_FLAGS} -fasm")
+set(DAISY_CPP_FLAGS "${DAISY_C_FLAGS}  -finline -finline-functions-called-once -fshort-enums -fno-move-loop-invariants -fno-unwind-tables -fno-rtti  -Wno-register")
+
+set(CMAKE_C_FLAGS "${DAISY_C_FLAGS} -std=gnu11 -MMD -MP -MF\"$(@:%.o=%.d)\"" CACHE INTERNAL "C Compiler options")
+set(CMAKE_CXX_FLAGS "${DAISY_CPP_FLAGS}" CACHE INTERNAL "C++ Compiler options")
+set(CMAKE_ASM_FLAGS "${OBJECT_GEN_FLAGS} -x assembler-with-cpp" CACHE INTERNAL "ASM Compiler options")
 
 # Ensure the ar plugin is loaded (needed for LTO)
 set(CMAKE_AR ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-gcc-ar)
@@ -51,6 +56,7 @@ add_compile_definitions(
     HSE_VALUE=16000000
     USE_HAL_DRIVER
     USE_FULL_LL_DRIVER
+    DATA_IN_D2_SRAM # for easy access
 )
 
 # -Wl,--gc-sections     Perform the dead code elimination.
@@ -65,8 +71,9 @@ set(CMAKE_EXE_LINKER_FLAGS "${MCU} -Wl,--gc-sections --specs=nano.specs --specs=
 # Options for DEBUG build
 # -Og   Enables optimizations that do not interfere with debugging.
 # -g    Produce debugging information in the operating system’s native format.
-set(CMAKE_C_FLAGS_DEBUG "-O0 -g" CACHE INTERNAL "C Compiler options for debug build type")
-set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g" CACHE INTERNAL "C++ Compiler options for debug build type")
+# -ggdb Produce debugging information for use by GDB.
+set(CMAKE_C_FLAGS_DEBUG "-O0 -g -ggdb" CACHE INTERNAL "C Compiler options for debug build type")
+set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g -ggdb" CACHE INTERNAL "C++ Compiler options for debug build type")
 set(CMAKE_ASM_FLAGS_DEBUG "-g" CACHE INTERNAL "ASM Compiler options for debug build type")
 set(CMAKE_EXE_LINKER_FLAGS_DEBUG "" CACHE INTERNAL "Linker options for debug build type")
 

@@ -1,19 +1,47 @@
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"type": "cmake",
-			"label": "CMake: build",
-			"command": "build",
-			"targets": [
-				"all"
-			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
-			"problemMatcher": [],
-			"detail": "CMake template build task"
-		}
-	]
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cmake",
+            "label": "CMake: build",
+            "command": "build",
+            "targets": [
+                "all"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+            "detail": "CMake build task"
+        },
+        {
+            "type": "cmake",
+            "label": "CMake: build-flash-st-link",
+            "command": "build",
+            "targets": [
+                "flash-st-link"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+            "detail": "CMake build and flash with ST Link task"
+        },
+        {
+            "type": "cmake",
+            "label": "CMake: build-flash-dfu",
+            "command": "build",
+            "targets": [
+                "flash-dfu"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "detail": "CMake build and flash with DFU"
+        }
+    ]
 }

@@ -1,0 +1,36 @@
+{
+    "configurations": [
+        {
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "name": "Win32",
+            "windowsSdkVersion": "10.0.17763.0",
+            "configurationProvider": "ms-vscode.makefile-tools",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
+        },
+        {
+            "cStandard": "c11",
+            "compilerPath": "/usr/local/bin/arm-none-eabi-g++",
+            "cppStandard": "c++17",
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "name": "macOS",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
+        }
+    ],
+    "version": 4
+}

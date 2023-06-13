@@ -1,4 +1,5 @@
-﻿﻿---
+﻿---
+Language: Cpp
 AlignAfterOpenBracket: Align
 AlignConsecutiveAssignments: true
 AlignConsecutiveDeclarations: true
@@ -18,17 +19,16 @@ AlwaysBreakTemplateDeclarations: 'true'
 BinPackArguments: 'false'
 BinPackParameters: 'false'
 BreakConstructorInitializersBeforeComma: 'false'
-ColumnLimit: '80'
+ColumnLimit: '120'
 ConstructorInitializerAllOnOneLineOrOnePerLine: 'true'
 ConstructorInitializerIndentWidth: '0'
 Cpp11BracedListStyle: 'true'
 DerivePointerAlignment: 'true'
 DisableFormat: 'false'
 IndentCaseLabels: 'true'
-IndentWidth: 4
+IndentWidth: '4'
 IndentWrappedFunctionNames: 'false'
 KeepEmptyLinesAtTheStartOfBlocks: 'false'
-Language: Cpp
 MaxEmptyLinesToKeep: '2'
 NamespaceIndentation: Inner
 ReflowComments: 'false'
@@ -55,12 +55,9 @@ BraceWrapping:
   AfterObjCDeclaration: true
   AfterStruct:     true
   AfterUnion:      true
-  AfterExternBlock: true
   BeforeCatch:     true
   BeforeElse:      true
   IndentBraces:    false
-  SplitEmptyFunction: false
-  SplitEmptyNamespace: false
-  SplitEmptyRecord: false
 BreakBeforeBraces: Allman
 BreakBeforeBinaryOperators: All
+# MUST BE SAVED WITH UTF-8 ENCODING

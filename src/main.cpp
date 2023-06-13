@@ -1,4 +1,4 @@
-// TODO: Include your daisy board header file
+// TODO: Include the appropriate daisy board header file for your platform
 #include "daisy_patch.h"
 
 using namespace daisy;
@@ -23,6 +23,7 @@ int main(void) {
     hw.StartAudio(AudioCallback);
 
     bool led_state = false;
+
     while (1) {
         hw.DelayMs(500);
         led_state = !led_state;
